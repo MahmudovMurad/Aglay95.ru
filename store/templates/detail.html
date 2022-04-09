@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Stone {% endblock title %}
+
+ 
+{% block content %}
+	<div id="contents">
+		
+		<div>
+			<div class="body" id="about">
+				<div id="sidebar">
+					<div class="body">
+						<img src="{{ post.image.url }}" alt="Img" style="width: 350px;">
+						<div class="contact">
+							<p>
+								For Order and Inquiries Please Call: <b>760-962-9541</b> Or you can visit us at: <b>4885 Wilson Street<br> Victorville, CA 92392</b>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div id="main">
+					<h1>Деталь</h1>
+					<h4>{{ post.name }}</h4>
+					<p>
+						{{ post.description }}
+					</p>
+					
+					<h4>Community</h4>
+					<p>
+						 <!-- <a href="https://wa.me/+9940706508030" class="btn1">    Contact</a>  -->
+						<a href="https://wa.me/+789638758787" style="text-decoration: none;" > <input type="submit" value="Contact" class="btn1" style="border: none; top: 0px; right: 0px;"></a>
+
+					</p>
+					<h4> Деталь</h4>
+					<p>
+						{{ post.details }}
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Stone {% endblock title %}
+
+ 
+{% block content %}
+	<div id="contents">
+		<div>
+			<div class="body" id="contact">
+				<div id="sidebar">
+					<div class="body">
+
+						<video  width="425" height="350" controls autoplay>  
+							<source src="{% static 'images/banner.mp4' %}" type="video/mp4">
+						</video>  
+
+
+						<div class="contact">
+							<p>
+								Для заказа и запросов:<b><a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMTDzqGHrHcFbvvmXdmgQstQnDQwBMKhPKXdGdcMllNdlDMtLdHZVhZxHbNwCttgrntjhhM" style="text-decoration : none">aqlay95@mail.ru</a> </b>
+								<a href="https://www.instagram.com/kamen_aqlay/" style="text-decoration: none;">Инстаграм (кликните сюда) :<b> kamen_aqlay</b> </a>
+								 <br> Или вы можете посетить нас по адресу:  <b>Mayakovskogo 113, Grozny<br></b> 
+							</p>
+						</div>
+					</div>
+				</div>
+				<div id="main">
+					<h1>Контакт</h1>
+					<p>
+						<b>Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь с нами.</b>
+						<form role="form" id="contact_form" class="contact-form" method="POST" >
+						{% csrf_token %}
+						
+						{{form.name.label_tag}}
+                   		{{form.name}}
+
+						{{form.email.label_tag}}
+						{{form.email}}
+
+						{{form.phone.label_tag}}
+                    	{{form.phone}}
+
+						{{form.message.label_tag}}
+						{{form.message}}
+
+						<input type="submit"  value="Send Message" id="contact_form"  class="btn1" onClick="proceed();" style="right: 0px; top: 0px;">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

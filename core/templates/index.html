@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Stone {% endblock title %}
+
+ 
+{% block content %}
+
+
+
+	
+	<div id="contents">
+		
+		<div>
+			<div class="body">
+				{% for i in banner %}
+				<div id="adbox">
+					<video  width="517" height="400" controls autoplay>  
+						<source src="{% static 'images/banner2.MP4' %}" type="video/mp4">
+					</video>                         <span class="info">  <a href="{% url 'store:store' %}" class="btn1" style="display: none;" >деталь</a> </span>
+					<div class="details">
+						<h1>{{ i.title }}</h1>
+						<p>
+							{{ i.description }}
+						</p>
+					</div>
+				</div>
+				{% endfor %}
+
+				<ul id="featured" style="margin-top: -55px;">
+					{% for post in reklam %}
+					<li class="banner">
+						
+						<div>
+							<a href="{% url 'store:product_detail' post.id %}">
+									<img src="{{ post.image.url }}" alt="Img" style="width: 312px;height: 215px;"> 
+								</a>
+						</div>
+						<div class="details">
+							<h4>{{ post.title }}</h4>
+							<p>
+								{{ post.description }}
+							</p>
+						</div>
+					</li>
+					{% endfor %}
+					
+				</ul>
+				<div class="contact">
+					<p>
+						Для заказа и консультации звоните: <b>(+7) 8963875 87 87 </b> Или вы можете посетить нас по адресу: <b>Россия, Грозный<br> 
+					</p>
+				</div>
+
+				<div class="blog">
+
+					<h4>Из блога</h4>
+					{% for j in blog %}
+					<div>
+						<img src="{{ j.image.url }}" alt="Img" style="width: 132px; height: 152px;"> <span>{{ j.create_at }}</span>
+						<p>
+							{{ j.title }}
+						</p>
+					</div>
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+{% endblock content %}

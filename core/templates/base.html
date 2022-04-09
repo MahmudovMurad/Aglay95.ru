@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>whitestonehome</title>
+	<!-- CSS only -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+
+</head>
+<body>
+	<div id="header">
+		<div>
+			<div id="logo">
+				<a href="{% url 'home' %}"><img src="{% static 'images/logologologo.jpg' %}" alt="LOGO"  style="width: 255px; height: 70px;"></a>
+			</div>
+			<ul id="navigation">
+				<li class="selected">
+					<a href="{% url 'home' %}">Главная</a>
+				</li>
+				<li>
+					<a href="{% url 'blog' %}">блог</a>
+
+				</li>
+				<li>
+					<a href="{% url 'store:store' %}">хранить</a>
+				</li>
+				
+				<li>
+					<a href="{% url 'store:contact' %}">Контакт</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+    {% block content %}
+    {% endblock %}
+    <div id="footer">
+		<div>
+			<div id="links">
+				<div class="showroom">
+					<a href="{% url 'home' %}"><img src="{% static 'images/logologologo.jpg' %}" alt="LOGO"  style="position: relative; bottom: -111px; width: 255px; height: 80px;"> </a>
+					<!-- <p>
+						4885 Wilson Street<br> Victorville, CA 92392<br><br> 760-962-9541<br><br> <a href="index.html">info@carvedcreations.com</a>
+					</p> -->
+				</div>
+				<div>
+					<h4>Последние сообщения в блоге</h4>
+					<ul class="posts">
+						{% for j in blog %}
+						<li>
+							<span class="time" style="font-size: 11px;">{{ j.create_at}}</span>
+							<p>
+								<a href="#" style="color:white;">{{ j.title }}</a>
+							</p>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div>
+					
+					<form method="POST" id="mc-embedded-subscribe-form">
+						<h4>частный заказ</h4>
+						{% csrf_token %}
+						<input   name="email" type="email" placeholder="Enter your email" required>
+						{{ form.email.errors }}
+
+						<!-- <input type="submit" value="Sign up" class="btn2" /> -->
+						<button  type="submit" class="btn2" style="color: white; border: 1px solid #af8112;" >отправьте</button>
+
+					</form>
+					<div id="connect" style="margin: 15px;">
+						<h4 style="text-align: center;">Социальные сети</h4>
+						<div class="social" style="margin-left: 65px;"><a href="#" target="_blank" class="facebook"></a> <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMTDzqGHrHcFbvvmXdmgQstQnDQwBMKhPKXdGdcMllNdlDMtLdHZVhZxHbNwCttgrntjhhM" target="_blank" class="googleplus"></a> </div>
+					</div>
+				</div>
+			</div>
+			<ul class="navigation">
+				<li class="selected">
+					<a href="{% url 'home' %}">Home</a>
+				</li>
+				<li>
+				</li>
+				<li>
+					<a href="{% url 'store:store' %}">Gallery</a>
+				</li>
+				
+				<li>
+					<a href="{% url 'store:contact' %}">Contact</a>
+				</li>
+			</ul>
+			<p id="footnote">
+				© 2022 whitestonehome.ru
+			</p>
+		</div>
+	</div>
+
+	<script>
+		let subscriberForm = document.getElementById("mc-embedded-subscribe-form");
+		subscriberForm.addEventListener('submit', function (e) {
+    	e.preventDefault();
+    	let postData = {
+    	    "email": subscriberForm.email.value
+    	}
+
+    	console.log(postData);
+    	let res = fetch(url='/subscribe/' ,{
+    	    method: "POST",
+    	    headers: {
+    	        'Content-Type': 'application/json',
+    	        "X-CSRFToken": subscriberForm.csrfmiddlewaretoken.value
+    	    },
+    	    body: JSON.stringify(postData),
+    	})
+    	    .then(function(response) {
+    	        if(response.ok){
+    	            alert('You have successfully subscribed to our site!');
+    	        }else {
+    	            return response.json().then(text => {
+
+    	                alert(text.email.join(','));
+					
+    	            })
+}
+    	    return response.json();
+    })
+})
+
+	</script>
+	
+	<!-- JavaScript Bundle with Popper -->
+</body>
+</html>

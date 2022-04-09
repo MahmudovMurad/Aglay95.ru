@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Stone {% endblock title %}
+
+ 
+{% block content %}
+	<div id="contents">
+		<div>
+			<div class="body" id="blog">
+				<div id="sidebar">
+					<div>
+						<h5>Избранные блоги</h5>
+						<ul class="posts">
+							<li>
+								<span class="time">Apr 16</span>
+								<p>
+									<a href="blog.html">Tips On Arranging Furniture</a> This website template has been designed by Free Website Templates for you, for free.
+								</p>
+							</li>
+							<li>
+								<span class="time">Apr 15</span>
+								<p>
+									<a href="blog.html">How To Maintain Wooden Furniture</a> And we love the challenge of doing something diferent and something special.
+								</p>
+							</li>
+							<li>
+								<span class="time">Apr 16</span>
+								<p>
+									<a href="blog.html">The Newest Innovation On Wooden</a> You can replace all this text with your own text. What’s more, they’re absolutely free!
+								</p>
+							</li>
+						</ul>
+					</div>
+					
+					<div>
+						<h5>Архивы</h5>
+						<ul>
+							<li>
+								<a href="blog.html"></a>
+								<video  width="262" height="262" controls autoplay>  
+									<source src="{% static 'images/blog.MP4' %}" type="video/mp4">
+								</video>    						
+								</li>
+							
+						</ul>
+					</div>
+				</div>
+				<div id="main">
+				{% for post in blog_list %}
+					<div class="viewer">
+						<span class="time">Apr 16</span>
+						<h3><a href="blog.html">{{ post.title }}</a></h3>
+						<p class="info">
+							Сообщение от: <a href="#">Админ</a> 
+						</p>
+						<div class="frame">
+							<img src="{{ post.image.url }}" alt="Img" style="width: 340px; height: 312px;">
+						</div>
+						<p>
+							{{ blog.description }}
+						</p>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock content %}
+</body>
+</html>

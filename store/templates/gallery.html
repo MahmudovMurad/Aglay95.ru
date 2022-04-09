@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Stone {% endblock title %}
+
+ 
+{% block content %}
+	<div id="contents">
+		<div>
+			<div class="body"  id="gallery">
+				<ul class="tabs">
+					<li class="selected">
+						<a href="gallery.html">Все продукты</a>
+					</li>
+					
+				</ul>
+				<h1>Store</h1>
+				<ul class="items">
+					{% for post in post %}
+					<a href="{% url 'store:product_detail' post.id %}">
+					<li>
+						<div class="frame">
+							<img src="{{ post.image.url }}" alt="Img" style="width: 418px;height: 262px;">
+						</div>
+						<h5>{{ post.name }}</h5>
+						<p>
+							{{ post.description }}
+						</p>
+						<div class="details">
+							<b><h5>Подробности</h5></b>
+							<p>
+								<b>{{ post.details }}</b>
+							</p>
+							
+						</div>
+					</li>
+				</a>
+					{% endfor %}
+				</ul>
+
+
+
+				<div class="pagination" style="    position: relative;
+            right: 35%;">
+              <span class="step-links">
+                  {% if page_obj.has_previous %}
+                  <div style="position: relative; right: 35%; top: 600px;">
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ page_obj.previous_page_number }}">previous </a>
+                  </div>
+                  {% endif %}
+          
+                 
+          
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}">&laquo; next </a>
+                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </span>
+          </div>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock content %}
